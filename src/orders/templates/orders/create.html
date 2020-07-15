@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Checkout page
+{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="page-header">Checkout</h4>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn btn-primary" value="Submit order">
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="page-header">
+                    your order
+                </div>
+                <ul class="list-group">                    
+                    {% for item in cart %}
+                        <li class="list-group-item">
+                            {{ item.quantity }} x {{ item.product.name }}
+                            <span>Rs. {{ item.total_price }} </span>
+                        </li>
+                    {% endfor %}
+                    <li class="list-group-item active"> Total cost: Rs. {{ cart.get_total_price }}  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

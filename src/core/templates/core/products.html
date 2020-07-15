@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Product list {% endblock %}
+{% block menu_bar %}
+{{ block.super }}
+<li class="active"><a href=" { url 'product-list' } ">Products</a>
+{% endblock %}
+{% block content %}
+<h3>List of Products</h3>
+<button class="button"> <a href="/products/create/">Create Product</a> </button>
+
+<div class="row">
+    {% for product in object_list %}
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <p> <img src="{{ product.photo.url }} " alt="logo-img" height="170px" width="160px"> </p>
+            <p> Name: {{ product.name }} </p>
+            <p> Description: {{ product.description }} </p>
+            <p> Price: {{ product.price }} </p>
+            <button class="button"> <a href="/products/{{ product.id }} "> Product Details </a> </button>
+        </div>
+    </div>
+    
+
+    {% endfor %}
+</div>
+{% endblock %}
