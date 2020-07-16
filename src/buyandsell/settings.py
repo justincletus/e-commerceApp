@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'core',
     'bootstrap4',
     'crispy_forms',
+    'paypal.standard.ipn',
 
 ]
 
@@ -137,3 +139,12 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join((BASE_DIR), 'products/')
 
 CART_SESSION_ID = 'cart2'
+
+PAYPAL_CLIENT_ID = config('CLIENT_ID')
+PAYPAL_SECRET_ID = config('SECRET_ID')
+PAYPAL_RECEIVER_EMAIL = 'justinbeckh-facilitator@gmail.com'
+PAYPAL_TEST = True
+
+# Razorpay
+RAZOR_CLIENT_ID = config('RAZOR_CLIENT_ID')
+RAZOR_SECRET_ID = config('RAZOR_SECRET_ID')
